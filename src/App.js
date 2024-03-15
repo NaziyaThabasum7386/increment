@@ -1,27 +1,23 @@
-import React, { useState } from "react";
+// App.js
+import { useState } from "react";
 
 export default function App() {
-  const [increase, setIncrease] = useState(0);
+  const [count, setCount] = useState(0);
 
-  // Cypress test cases inclusion
-  if (process.env.NODE_ENV === 'test') {
-    return (
-      <div>
-        <h1>Counter App</h1>
-        <h2>Count: {increase}</h2>
-        <button data-testid="increment-button" onClick={(e) => setIncrease(increase + 1)}>Increment</button>
-        <button data-testid="decrement-button" onClick={(e) => setIncrease(increase - 1)}>Decrement</button>
-      </div>
-    );
-  }
+  const handleIncrement = () => {
+    setCount(count + 1);
+  };
 
-  // Normal rendering without test cases
+  const handleDecrement = () => {
+    setCount(count - 1);
+  };
+
   return (
     <div>
       <h1>Counter App</h1>
-      <h2>Count: {increase}</h2>
-      <button onClick={(e) => setIncrease(increase + 1)}>Increment</button>
-      <button onClick={(e) => setIncrease(increase - 1)}>Decrement</button>
+      <h2 data-testid="count">Count: {count}</h2>
+      <button onClick={handleIncrement} data-testid="increment-button">Increment</button>
+      <button onClick={handleDecrement} data-testid="decrement-button">Decrement</button>
     </div>
   );
 }
